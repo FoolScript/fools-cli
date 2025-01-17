@@ -1,11 +1,11 @@
 import 'package:args/command_runner.dart';
-import 'package:fools/commands/dartCli.dart';
+import 'package:fools/commands/commands.dart';
 
 void main(List<String> arguments) {
   CommandRunner(
     "fools",
     "Fools start",
   )
-    ..addCommand(DartCliCommand())
+    ..addCommand(ConfigCommand())
     ..run(arguments);
 }

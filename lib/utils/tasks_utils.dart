@@ -77,6 +77,52 @@ class TaskUtils {
     return mergedTasks;
   }
 
+  /// Parses and merges snippets from a source file into the .vscode/snippets.code-snippets file.
+  /// If the snippets file doesn't exist, it creates a new one.
+  /// Returns true if successful, false if there was an error.
+  static Future<bool> parseSnippets(String sourceSnippetsPath) async {
+    try {
+      // Read the source snippets
+      final sourceSnippets = await _readJsonFile(sourceSnippetsPath);
+      if (sourceSnippets == null) return false;
+
+      // Get or create .vscode directory
+      final vscodeDir = Directory('.vscode');
+      if (!await vscodeDir.exists()) {
+        await vscodeDir.create();
+      }
+
+      // Path to snippets file
+      final snippetsFilePath = path.join('.vscode', 'snippets.code-snippets');
+      final snippetsFile = File(snippetsFilePath);
+
+      Map<String, dynamic> existingSnippets = {};
+
+      // If snippets file exists, read and parse it
+      if (await snippetsFile.exists()) {
+        final content = await snippetsFile.readAsString();
+        existingSnippets = json.decode(content) as Map<String, dynamic>;
+      }
+
+      // Merge snippets, preserving existing ones unless overwritten
+      sourceSnippets.forEach((key, value) {
+        if (!existingSnippets.containsKey(key)) {
+          existingSnippets[key] = value;
+        }
+      });
+
+      // Write the updated content back to snippets file
+      await snippetsFile.writeAsString(
+        JsonEncoder.withIndent('  ').convert(existingSnippets),
+      );
+
+      return true;
+    } catch (e) {
+      print('Error parsing snippets: $e');
+      return false;
+    }
+  }
+ 
   /// Reads and parses a JSON file
   static Future<Map<String, dynamic>?> _readJsonFile(String filePath) async {
     try {
