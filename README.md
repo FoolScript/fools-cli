@@ -12,10 +12,12 @@ fools config -t hugo
 ```
 
 # VS Code Tasks
+
 [VS Code tasks](https://code.visualstudio.com/Docs/editor/tasks) are reusable tasks that can be run from the command palette or from a keyboard shortcut. They are defined in a `tasks.json` file in the `.vscode` folder of your workspace.
 
 > [!IMPORTANT]
 > The fools CLI will create a `tasks.json` file in the `.vscode` folder of your workspace if you do not have one.
+
 
 # VS Code Snippets
 
@@ -23,6 +25,9 @@ fools config -t hugo
 
 > [!IMPORTANT]
 > The fools CLI will create a `snippets.code-snippets` file in the `.vscode` folder of your workspace if you do not have one.
+
+> [!TIP]
+> You can add multiple `.code-snippets` files to the `.vscode` folder of your workspace.
 
 # Development
 

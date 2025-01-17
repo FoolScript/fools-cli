@@ -1,0 +1,42 @@
+{
+    "Fool's Changelog": {
+        "prefix": "foolsChangelog",
+        "body": [
+            "## ${1:1.0.0}",
+            "- ${2|🟩 Added,🟨 Changed,🟧 Deprecated,🟥 Removed,🟪 Fixed,🟦 Security|}: ${3}",
+            "- *Date:* ${CURRENT_MONTH}-${CURRENT_DATE}-${CURRENT_YEAR}",
+            "",
+            "# Changelog",
+            "",
+            "All notable changes to this project will be documented in this file.",
+            "",
+            "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),",
+            "and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+            "",
+            "# Types of Changes",
+            "- 🟩 Added",
+            "- 🟨 Changed",
+            "- 🟧 Deprecated",
+            "- 🟥 Removed",
+            "- 🟪 Fixed",
+            "- 🟦 Security"
+        ],
+        "description": "Create a changelog"
+    },
+    "Fool's Changelog Entry": {
+        "prefix": "foolsChangelogEntry",
+        "body": [
+            "## ${1:1.0.0}",
+            "- ${2|🟩 Added,🟨 Changed,🟧 Deprecated,🟥 Removed,🟪 Fixed,🟦 Security|}: ${3}",
+            "- *Date:* ${CURRENT_MONTH}-${CURRENT_DATE}-${CURRENT_YEAR}"
+        ],
+        "description": "Update the changelog"
+    },
+    "Fool's Changelog Item": {
+        "prefix": "foolsChangelogItem",
+        "body": [
+            "- ${1|🟩 Added,🟨 Changed,🟧 Deprecated,🟥 Removed,🟪 Fixed,🟦 Security|}: ${2}"
+        ],
+        "description": "Add a changelog item"
+    }
+}

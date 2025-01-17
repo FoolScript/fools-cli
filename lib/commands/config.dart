@@ -93,7 +93,7 @@ class ConfigCommand extends Command {
       }
 
       // Handle snippets if snippets.json exists
-      final snippetsPath = path.join(configDir, 'snippets.json');
+      final snippetsPath = path.join(configDir, 'snippets.code-snippets');
       if (File(snippetsPath).existsSync()) {
         final snippetsSuccess = await TaskUtils.parseSnippets(snippetsPath);
         if (snippetsSuccess) {
