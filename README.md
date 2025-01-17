@@ -1,5 +1,5 @@
 > The fool doth think he is wise, but the wise man knows himself to be a fool.
-> - William Shakespeare
+- William Shakespeare
 
 This CLI helps you populate the `.vscode` folder with helpful `tasks.json` and `snippets.code-snippets` files because we are all _fools_ and forget the syntax of the tools we use 🃏
 
