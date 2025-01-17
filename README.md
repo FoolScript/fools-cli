@@ -10,6 +10,7 @@ fools config -t dart-cli
 fools config -t readme
 fools config -t hugo
 ```
+
 # VS Code Tasks
 [VS Code tasks](https://code.visualstudio.com/Docs/editor/tasks) are reusable tasks that can be run from the command palette or from a keyboard shortcut. They are defined in a `tasks.json` file in the `.vscode` folder of your workspace.
 

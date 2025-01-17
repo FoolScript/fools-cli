@@ -21,7 +21,6 @@ class ConfigCommand extends Command {
       mandatory: true,
     );
 
-    // Optional: Add a list flag to show available configurations
     argParser.addFlag(
       'list',
       abbr: 'l',
@@ -30,7 +29,6 @@ class ConfigCommand extends Command {
     );
   }
 
-  /// Gets a list of available configurations by scanning the tasks directory
   Future<List<String>> _getAvailableConfigs() async {
     final scriptUri = Platform.script;
     final packageRoot = path.dirname(path.dirname(scriptUri.toFilePath()));
@@ -52,7 +50,6 @@ class ConfigCommand extends Command {
   @override
   Future<void> run() async {
     try {
-      // Handle the list flag
       if (argResults?['list'] == true) {
         final configs = await _getAvailableConfigs();
         print('\nAvailable configurations:');
@@ -68,7 +65,6 @@ class ConfigCommand extends Command {
         return;
       }
 
-      // Validate that the configuration exists
       final configs = await _getAvailableConfigs();
       if (!configs.contains(configType)) {
         print('Error: Configuration "$configType" not found.');
@@ -79,30 +75,38 @@ class ConfigCommand extends Command {
         return;
       }
 
-      // Get the package's lib directory path
       final scriptUri = Platform.script;
       final packageRoot = path.dirname(path.dirname(scriptUri.toFilePath()));
       final configDir = path.join(packageRoot, 'lib', 'tasks', configType);
+      bool configurationApplied = false;
 
-      // Handle tasks
+      // Handle tasks if tasks.json exists
       final tasksPath = path.join(configDir, 'tasks.json');
-      final tasksSuccess = await TaskUtils.parseTasks(tasksPath);
-
-      if (tasksSuccess) {
-        print('Successfully updated VSCode tasks for $configType');
-      } else {
-        print('Failed to update VSCode tasks for $configType');
+      if (File(tasksPath).existsSync()) {
+        final tasksSuccess = await TaskUtils.parseTasks(tasksPath);
+        if (tasksSuccess) {
+          print('Successfully updated VSCode tasks for $configType');
+          configurationApplied = true;
+        } else {
+          print('Failed to update VSCode tasks for $configType');
+        }
       }
 
-      // Handle snippets if they exist
+      // Handle snippets if snippets.json exists
       final snippetsPath = path.join(configDir, 'snippets.json');
       if (File(snippetsPath).existsSync()) {
         final snippetsSuccess = await TaskUtils.parseSnippets(snippetsPath);
         if (snippetsSuccess) {
           print('Successfully updated VSCode snippets for $configType');
+          configurationApplied = true;
         } else {
           print('Failed to update VSCode snippets for $configType');
         }
+      }
+
+      if (!configurationApplied) {
+        print('No configuration files found for $configType');
+        return;
       }
     } catch (e) {
       print('Error running configuration command: $e');
