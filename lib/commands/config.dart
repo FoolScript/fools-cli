@@ -1,6 +1,5 @@
 // lib/commands/config_command.dart
 import 'dart:io';
-import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:fools/utils/tasks_utils.dart';
 import 'package:path/path.dart' as path;
@@ -10,7 +9,7 @@ class ConfigCommand extends Command {
   final name = 'config';
 
   @override
-  final description = 'Configure VSCode settings for a specific configuration';
+  final description = 'Configure VS Code settings for a specific configuration';
 
   ConfigCommand() {
     argParser.addOption(
@@ -19,13 +18,6 @@ class ConfigCommand extends Command {
       help:
           'Type of configuration to install (e.g., readme, typescript, dart-cli)',
       mandatory: true,
-    );
-
-    argParser.addFlag(
-      'list',
-      abbr: 'l',
-      help: 'List available configurations',
-      negatable: false,
     );
   }
 

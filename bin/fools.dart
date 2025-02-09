@@ -6,6 +6,6 @@ void main(List<String> arguments) {
     "fools",
     "Fools start",
   )
-    ..addCommand(ConfigCommand())
+    ..addCommand(StartCommand())
     ..run(arguments);
 }
