@@ -1,6 +1,6 @@
-## 1.0.0
+## 1.0.1
 - 🟩 Added: Initial release
-- *Date:* 01-17-2025
+- *Date:* 02-08-2025
 
 # Changelog
 
