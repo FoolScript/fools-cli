@@ -1,4 +1,4 @@
-## 1.0.1
+## 1.0.2
 - 🟩 Added: Initial release
 - *Date:* 02-08-2025
 
